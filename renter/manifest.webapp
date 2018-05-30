@@ -1,0 +1,21 @@
+{
+  "name": "Mobil TK",
+  "description": "An application designed to keep track of your borrowed and lent MOVIES on every media type.",
+  "launch_path": "/index.html",
+  "icons": {
+    "30": "/img/icon-30.png",
+    "60": "/img/icon-60.png",
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Nagy Gábor",
+    "url": "https://github.com/murdock07/apps"
+  },
+  "permissions": {
+    "desktop-notification":{
+        "description": "It is needed for creating system notifications."
+    }
+  },
+
+  "default_locale": "en"
+}

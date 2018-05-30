@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <script src="/js/Dexie.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/movieDb.js"></script>
+
+    <link href="style/headers.css" rel="stylesheet" type="text/css">
+    <link href="style/drawer.css" rel="stylesheet" type="text/css">
+    <link href="style/input_areas.css" rel="stylesheet" type="text/css">
+    <link href="style/switches.css" rel="stylesheet" type="text/css">
+    <link href="style/value_selector.css" rel="stylesheet" type="text/css">
+    <link href="style/buttons.css" rel="stylesheet" type="text/css">
+    <link href="style/application.css" rel="stylesheet" type="text/css">
+    <link href="style/lists.css" rel="stylesheet" type="text/css">
+    <title> Mobil Téká </title>
+</head>
+<body>
+
+
+    
+<section data-type="sidebar" >
+    <header>
+        <h1>Menu</h1>
+    </header>
+
+    <nav>
+        <h2> Műveletek </h2>
+        <ul>
+            <li><a id="btn-mainView" href="#">Főoldal</a></li>
+            <li><a id="btn-actionView" href="#">Kölcsönadok/veszek</a></li>
+            <li><a id="btn-editTypesView" href="#">Típusok szerkesztése</a></li>
+            
+        </ul>
+
+        <h2> Listák </h2>
+        <ul>
+            <li><a id="btn-listBorrowView" href="#">Kölcsönkért</a></li>
+            <li><a id="btn-listLendView" href="#">Kölcsönadott</a></li>
+            <li><a id="btn-listArchivesView" href="#">Archívum</a></li>
+            <li><a id="btn-listByTypeView" href="#">Listázás típusonként</a></li>
+        </ul>  
+    </nav>
+</section>
+    
+<section id="drawer" role="region" class="skin-dark">
+    <header>
+          <a href="#content"><span class="icon icon-menu">Oldalsáv elrejtése</span></a>
+          <a href="#drawer"><span class="icon icon-menu">Oldalsáv mutatása</span></a>
+          <h1>Mobil TéKá</h1>
+    </header>
+        
+    <div role="main">
+        
+        <section id="mainView" role="region" class="skin-dark">
+            <p>Üdv,</p>
+            <p class="normal-text"> 
+                <span id="countBorrowed">0</span> Kölcsönkért elem <br>
+                <span id="countLent">0</span> Kölcsönadott elem <br>
+                <span id="countArchived">0</span> Archív elem
+            </p> 
+        </section>
+        
+        
+        <section id="listByTypeView" role="region" class="skin-dark">
+            <p>Válasszon egy típust a listázáshoz:</p>
+            <p><select id="input_bli_item_type2"></select></p>
+            <section data-type="list">
+                <ul id="byTypeList" class="item-list">
+                </ul>
+            </section>
+        </section>
+
+        <section id="actionView" role="region" class="skin-dark">
+            <p>Kölcsön adok/veszek</p>
+            
+            <form>
+                <p> 
+                    <select id="input_bli_action" class="normal">
+                        <option value="" selected="selected" disabled="disabled" >válassz műveletet...</option>
+                        <option value="borrow">Kér</option>
+                        <option value="lend">Ad</option>
+                    </select>
+                </p>
+
+                <p><input type="text"  class="normal" id="input_bli_item" placeholder="Tétel" required="required" ></p>
+                <p><input type="text"  class="normal" id="input_bli_person" placeholder="Személy" required="required" ></p>
+                <p><select  class="normal" id="input_bli_item_type"></select></p>
+                <p><input  class="normal" type="date" maxlength="10" id="input_bli_from_date" placeholder="Tól"></p>
+                <p><input  class="normal" type="date" maxlength="10" id="input_bli_to_date" placeholder="Ig"></p>
+                
+                <p>
+                    <label class="pack-checkbox notify_checkbox">
+                        <input type="checkbox" id="input_bli_notify" >
+                        <span>Értesíts!</span>
+                    </label> 
+                </p>
+
+                <p><input type="date" id="input_bli_notify_date"  placeholder="Értesítés dátuma" ></p>
+                <p><input type="time" id="input_bli_notify_time"  placeholder="Értesítés ideje" ></p>
+                <p><textarea id="input_bli_comment" placeholder="Megjegyzések..." ></textarea></p>
+                
+                <p>
+                    <button class="recommend" id="addButton">Mentés</button>
+                    <button class="default" id="backToMainButton">Vissza</button>
+                </p>
+            </form>
+        </section>
+
+        <section id="editActionView" role="region" class="skin-dark">
+            <p>Művelet szerkesztése</p>
+            
+            <form>
+                <p> 
+                    <select id="edit_bli_action" class="normal">
+                        <option value="" selected="selected" disabled="disabled" >válassz műveletet...</option>
+                        <option value="borrow">Kér</option>
+                        <option value="lend">Ad</option>
+                    </select>
+                </p>
+
+                <p><input type="text" class="normal" id="edit_bli_item" placeholder="Tétel" required="required" ></p>
+                <p><input type="text" class="normal" id="edit_bli_person" placeholder="Személy" required="required" ></p>
+                <p><select id="edit_bli_item_type" class="normal"></select></p>
+                <p><input type="date" class="normal" maxlength="10" id="edit_bli_from_date" placeholder="Tól" required="" ></p>
+                <p><input type="date" class="normal" maxlength="10" id="edit_bli_to_date"  placeholder="Ig" required="" ></p>
+                
+                <p>
+                    <label class="pack-checkbox notify_checkbox">
+                        <input type="checkbox" id="edit_bli_notify" >
+                        <span>Értesíts!</span>
+                    </label> 
+                </p>
+
+                <p><input type="date" id="edit_bli_notify_date"  placeholder="Értesítés dátuma" ></p>
+                <p><input type="time" id="edit_bli_notify_time"  placeholder="Értesítés ideje" ></p>
+                <p><textarea id="edit_bli_comment" placeholder="Megjegyzés..." ></textarea></p>
+                
+                <p>
+                    <label class="pack-checkbox notify_checkbox">
+                        <input type="checkbox" id="edit_bli_returned" >
+                        <span>Archivál!</span>
+                    </label> 
+                </p>
+                
+                <br>
+                
+                <p>
+                    <button class="recommend" id="editButton">Frissít</button>
+                    <button class="recommend" id="deleteItemButton">Töröl</button>
+                    <button class="default" id="editBackButton">Vissza</button>
+                </p>
+            </form>
+        </section>
+        
+        
+        
+        <section id="listBorrowView" role="region" >
+            <p>Kölcsönkért Filmek</p>
+            <section data-type="list">
+                <ul id="borrowList" class="item-list">
+                </ul>
+            </section>
+        </section>
+        
+        <section id="listLendView" role="region">
+            <p>Kölcsönadott Filmek</p>
+            <section data-type="list">
+                <ul id="lendList" class="item-list">
+                </ul>
+            </section>
+        </section>
+        
+         <section id="listArchivesView" role="region" >
+            <p>Archivált műveletek</p>
+            <section data-type="list">
+                <ul id="archivesList" class="item-list">
+                </ul>
+            </section>
+        </section>
+
+        <section id="newTypeView" role="region" class="skin-dark">
+            <p>Új típus felvétele</p>
+            <form>
+                <p> 
+                    <input type="text" id="new_type" placeholder="név" >
+                </p>
+                <p>
+                    <button class="recommend" id="addTypeButton">Mentés</button>
+                    <button class="default" id="btn-back">Vissza</button>
+                </p>
+             </form>
+        </section>
+
+        <section id="editTypesView" role="region" >
+            <p>Típusok szerkesztése</p>
+            <form>
+                <p> 
+                    <button class="recommend" id="btn-newTypeView">Új típus</button>
+                </p>
+            </form>
+            
+            <br>
+            
+            <p>Típusok</p>
+            <section data-type="list">
+                <ul id="typelist">
+                </ul>
+            </section>
+        </section>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,120 @@
+.hidden {
+    display:none;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: sans-serif;
+  background-color: #ff0000;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+h2.bb-docs {
+  font-size: 1.8rem;
+  font-weight: lighter;
+  color: #666;
+  margin: -0.1rem 0 0;
+  background-color: #ff0000;
+  padding: 0.4rem 0.4rem 0.4rem 3rem;
+  border: solid 0.1rem #e8e8e8;
+}
+
+section[role="region"] {
+  height: 100%;
+  line-height: 1em;
+  font-size: 2.2rem;
+}
+
+div[role="main"] {
+  background: #BF3030;/*#5d7483;*/
+  min-height: 410px;
+  overflow: hidden;
+
+}
+
+div[role="main"] p {
+  margin: 2rem 2.5rem;
+}
+
+label {
+     margin-left: 2rem;
+     width: 100%;
+}
+
+button.default, button.recommend {
+    border-radius: 0 !important;
+}
+
+button.recommend {
+    background-color: #009999 !important;
+}
+
+button.default {
+    background-color: #006363 !important;
+    color: #fff;
+}
+
+p.normal-text {
+    font-size: 1.5rem;
+}
+
+input[type=date], input[type=time],input[type=text], 
+select, textarea  {
+    padding: 0 1rem;
+    color: #ddd !important;
+    
+    border: 1px solid #000 !important;
+}
+
+
+
+.btn-deleteType {
+    color: #ddd !important;
+    background-color: rgba(0,0,0,0.2) !important;
+    border: 2px solid #000 !important;
+}
+
+.btn-viewItem {
+    padding: 0 1rem;
+    background-color: rgba(0,0,0,0.2) !important;
+}
+
+textarea {
+    padding: 1rem;
+}
+
+.notify_checkbox {
+    margin-left: 40px;
+    color: #eee;
+    position: static !important;
+    display: inline !important;
+}
+
+.notify_checkbox input ~ span:after {
+    left: 5% !important;
+}
+
+.item-list li, #typelist li {
+    border:0 !important;
+}
+
+.item-list li {
+    margin-bottom: 1rem !important;
+}
+
+.p-line1 { color: #eee !important; }
+.p-line2 { color: #ccc !important; }
+
+
+.normal {
+    background-color: rgba(0,0,0,0.2) !important;
+}
+
+.hibas {
+    /*border: 1px solid red !important;*/
+    background-color: rgba(255,0,0,0.2) !important;
+}
